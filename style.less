@@ -1,0 +1,43 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+.appContainer {
+  display: flex;
+  height: 100%;
+}
+
+.listContainer,
+.detailsContainer {
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: 50%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.detailsContainer {
+  background: #eee;
+}
+
+.listContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.listContainer li {
+  padding: 0;
+}
+
+.listContainer li a {
+  padding: 5px 10px;
+  display: block;
+}
