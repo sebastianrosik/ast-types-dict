@@ -23,7 +23,9 @@ export default class App extends React.Component {
     window.addEventListener("hashchange", this.hashChangeHandler, false);
     const hash = window.location.hash.substr(1);
     if (hash) {
-      this.query(hash);
+      this.setState({
+        selectedTypeName: hash
+      });
     }
   }
   componentWillUnmount() {
