@@ -61,7 +61,10 @@ export default class App extends React.Component {
     return Object.keys(namedTypes);
   }
   renderListItem(typeName) {
-    return <li key={typeName}><a href={`/#${typeName}`}>{typeName}</a></li>;
+    const selected = this.state.selectedTypeName === typeName ? 'typeList-item--selected' : '';
+    return <li key={typeName} className={`typeList-item ${selected}`}>
+      <a className="typeList-anchor" href={`/#${typeName}`}>{typeName}</a>
+    </li>;
   }
   renderList() {
     const list = this.getAstTypes().filter(this.isQueryMatchingTypeName)
@@ -79,10 +82,10 @@ export default class App extends React.Component {
     return (
       <main className="appContainer">
         <section className="listContainer">
-          <form>
-            <input type="search" onInput={(event)=> this.query(event.target.value)} autoFocus/>
+          <form className="filterForm">
+            <input className="filterForm-input" type="search" onInput={(event)=> this.query(event.target.value)} autoFocus/>
           </form>
-          <ul>
+          <ul className="typeList">
             { this.renderList() }
           </ul>
         </section>

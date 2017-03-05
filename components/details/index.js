@@ -32,6 +32,9 @@ const renderFields = (typeName) => {
 
 const printConst = (typeName, constName) => {
   const { ownFields } = Type.def(typeName);
+  if (!ownFields[constName]) {
+    return `const ${constName};`;
+  }
   const name = ownFields[constName].type.name;
   const value = typeof name === 'function' ? name() : name;
   return `const ${constName} = ${value};`
