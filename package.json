@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack",
-    "publish": "rm -r docs; mkdir docs; cp dist/* docs; cp index.html docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sebastian Rosik <sebastian.rosik@gmail.com>",
