@@ -1,5 +1,24 @@
 const webpack = require('webpack');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+
+const plugins = [
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: "vendor",
+    filename: "vendor.js"
+  })
+];
+
+if (process.env.NODE_ENV !== 'development') {
+  plugins.push(new webpack.LoaderOptionsPlugin({
+    minimize: true,
+    debug: false
+  }));
+  plugins.push(new UglifyJSPlugin());
+}
 
 module.exports = {
   entry: {
@@ -8,7 +27,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    publicPath: '/public',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
@@ -31,11 +50,5 @@ module.exports = {
       }
     ]
   },
-  plugins: [
-    new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify('development')}),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      filename: "vendor.js"
-    })
-  ]
+  plugins
 };

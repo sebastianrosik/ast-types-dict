@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "webpack-dev-server",
     "build": "webpack",
+    "publish": "rm -r docs; mkdir docs; cp dist/* docs; cp index.html docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sebastian Rosik <sebastian.rosik@gmail.com>",
   "license": "MIT",
+  "peerDependencies": {
+    "ast-types": "0.x"
+  },
   "dependencies": {
-    "ast-types": "^0.9.5",
     "react": "^15.4.2",
     "react-dom": "^15.4.2"
   },
@@ -24,6 +27,7 @@
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.2",
+    "uglifyjs-webpack-plugin": "^0.3.0",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   },
