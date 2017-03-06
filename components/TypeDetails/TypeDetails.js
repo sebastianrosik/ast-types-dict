@@ -19,7 +19,8 @@ const renderFieldValue = (value) => {
 }
 
 const renderField = ({ name, value, hidden }) => {
-  return <li key={name}><label>{name}</label> {renderFieldValue(value)} {hidden ? '(hidden)' : ''}</li>;
+  const hiddenEmblem = <span className="field-hidden">(hidden)</span>;
+  return <li key={name} className="fieldsList-item"><label className="field-name">{name}</label> <span className="field-value">{renderFieldValue(value)} {hidden ? hiddenEmblem : ''}</span></li>;
 }
 
 const renderFields = (typeName) => {
@@ -59,23 +60,34 @@ const renderBaseTypes = (typeName) => {
   return baseNames.map(baseName => <li key={baseName}><a href={`#${baseName}`}>{baseName}</a></li>)
 }
 
-export default ({ typeName }) => (
-  <div>
-    <h3>{typeName}</h3>
+const isBuildable = (typeName) => {
+  const { buildable } = Type.def(typeName);
+  return buildable;
+}
 
-    <h4>Base:</h4>
+export default ({ typeName }) => (
+  <div className="typeDetails">
+    <h3 className="typeDetails-heading">{typeName}</h3>
+
+    <h4 className="typeDetails-subHeading">Base</h4>
     <ul>
       { renderBaseTypes(typeName) }
     </ul>
 
-    <h4>Fields:</h4>
-    <ul>
+    <h4 className="typeDetails-subHeading">Fields</h4>
+    <ul className="fieldsList">
       { renderFields(typeName) }
     </ul>
 
-    <h4>Example:</h4>
-    <code>
-      { renderSource(typeName)}
-    </code>
+    <h4 className="typeDetails-subHeading">Building</h4>
+    {
+      isBuildable(typeName)
+      ?
+      <code className="typeDetails-source">
+        { renderSource(typeName)}
+      </code>
+      :
+      "This Type is not buildable."
+    }
   </div>
 );
