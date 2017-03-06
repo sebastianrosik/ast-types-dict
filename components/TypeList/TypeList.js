@@ -5,7 +5,7 @@ export default ({ items, selected }) => <ul className="typeList">{ renderList(it
 const renderListItem = (typeName, selected) => {
   const selectedClassName = selected === typeName ? 'typeList-item--selected' : '';
   return <li key={typeName} className={`typeList-item ${selectedClassName}`}>
-    <a className="typeList-anchor" href={`/#${typeName}`}>{typeName}</a>
+    <a className="typeList-anchor" href={`#${typeName}`}>{typeName}</a>
   </li>;
 };
 
