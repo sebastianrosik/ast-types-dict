@@ -1,8 +1,8 @@
 import React from 'react';
 import astTypes from 'ast-types';
 
-import List from '../typeList';
-import Details from '../typeDetails';
+import List from '../TypeList';
+import Details from '../TypeDetails';
 
 const { namedTypes } = astTypes;
 
