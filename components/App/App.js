@@ -4,28 +4,35 @@ import astTypes from 'ast-types';
 import List from '../TypeList';
 import Details from '../TypeDetails';
 
-const { namedTypes } = astTypes;
+const { namedTypes, Type } = astTypes;
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       query: '',
-      selectedTypeName: null
+      selectedType: null
     }
     this.isQueryMatchingTypeName = this.isQueryMatchingTypeName.bind(this);
     this.hashChangeHandler = this.hashChangeHandler.bind(this);
   }
   hashChangeHandler(event) {
     const url = new URL(event.newURL);
-    this.selectTypeName(url.hash.substr(1));
+    const typeName = url.hash.substr(1);
+    const type = this.getTypeByName(typeName);
+    this.selectType(type);
+  }
+  getTypeByName(typeName) {
+    return Type.def(typeName);
   }
   componentDidMount() {
     window.addEventListener("hashchange", this.hashChangeHandler, false);
     const hash = window.location.hash.substr(1);
-    if (hash) {
+    const typeName = hash;
+    const type = this.getTypeByName(typeName);
+    if (type) {
       this.setState({
-        selectedTypeName: hash
+        selectedType: type
       });
     }
   }
@@ -45,12 +52,12 @@ export default class App extends React.Component {
       query: ''
     });
   }
-  hasSelectedTypeName() {
-    return this.state.selectedTypeName !== null;
+  hasSelectedType() {
+    return this.state.selectedType !== null;
   }
-  selectTypeName(typeName) {
+  selectType(type) {
     this.setState({
-      selectedTypeName: typeName
+      selectedType: type
     });
   }
   getAstTypes() {
@@ -70,10 +77,10 @@ export default class App extends React.Component {
         </header>
         <div className="app-columnsContainer">
           <section className="app-column">
-            <List items={this.getFilteredListItems()} selected={this.state.selectedTypeName}/>
+            <List items={this.getFilteredListItems()} selected={this.state.selectedType}/>
           </section>
           <section className="app-column">
-            { this.hasSelectedTypeName() && <Details typeName={this.state.selectedTypeName}/> }
+            { this.hasSelectedType() && <Details type={this.state.selectedType}/> }
           </section>
         </div>
       </main>
