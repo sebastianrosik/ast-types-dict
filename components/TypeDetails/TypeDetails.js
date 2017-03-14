@@ -72,7 +72,7 @@ export default ({ type }) => (
         { renderSource(type)}
       </code>
       :
-      <p className="typeDetails-info">"This Type is not buildable."</p>
+      <p className="typeDetails-info">This Type is not buildable.</p>
     }
   </div>
 );
