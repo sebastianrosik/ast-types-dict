@@ -14,7 +14,7 @@ test('Prints source if type is buildable', () => {
   const type = createType({
     buildable: true
   });
-  const component = shallow(<TypeDetails type={type} />);
+  const component = shallow(<TypeDetails type={type}/>);
   expect(component.find('.typeDetails-source').length).toEqual(1);
 });
 

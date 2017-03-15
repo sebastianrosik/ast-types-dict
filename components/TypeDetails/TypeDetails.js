@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SuperTypes from '../SuperTypes';
+import SourceCode from '../SourceCode';
 
 const renderFieldValue = (value) => {
   if (typeof value === 'undefined') {
@@ -22,26 +23,6 @@ const renderFields = (type) => {
   return Object.keys(allFields).map(fieldName => renderField(allFields[fieldName]));
 }
 
-const printConst = (type, constName) => {
-  const { ownFields } = type;
-  if (!ownFields[constName]) {
-    return `const ${constName};`;
-  }
-  const { name } = ownFields[constName].type;
-  const value = typeof name === 'function' ? name() : name;
-  return `const ${constName} = ${value};`
-}
-
-const renderSource = (type) => {
-  const { buildParams, typeName } = type;
-  const fnName = typeName.substr(0, 1).toLowerCase() + typeName.substr(1);
-  if (buildParams) {
-    const argsDefinitions = buildParams.map(constName => printConst(type, constName)).join('\n');
-    return `${argsDefinitions}\n\nconst node = jscodeshift.${fnName}(${buildParams.join(', ')});`;
-  }
-  return `const node = jscodeshift.${fnName}();`;
-}
-
 const isBuildable = (type) => type.buildable;
 
 export default ({ type, astTypes }) => (
@@ -60,9 +41,9 @@ export default ({ type, astTypes }) => (
     {
       isBuildable(type)
       ?
-      <code className="typeDetails-source">
-        { renderSource(type)}
-      </code>
+      <div className="typeDetails-source">
+        <SourceCode type={type} />
+      </div>
       :
       <p className="typeDetails-info">This Type is not buildable.</p>
     }

@@ -6,9 +6,6 @@ import Details from '../TypeDetails';
 
 const { namedTypes, Type } = astTypes;
 
-
-window.astTypes = astTypes;
-
 export default class App extends React.Component {
   constructor() {
     super();
