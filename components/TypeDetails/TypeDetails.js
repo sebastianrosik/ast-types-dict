@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SuperTypes from '../SuperTypes';
+
 const renderFieldValue = (value) => {
   if (typeof value === 'undefined') {
     return 'undefined';
@@ -40,24 +42,14 @@ const renderSource = (type) => {
   return `const node = jscodeshift.${fnName}();`;
 }
 
-const renderBaseTypes = (type) => {
-  const { baseNames } = type;
-  if (baseNames.length === 0) {
-    return <em>None</em>;
-  }
-  return baseNames.map(baseName => <li key={baseName}><a href={`#${baseName}`}>{baseName}</a></li>)
-}
-
 const isBuildable = (type) => type.buildable;
 
-export default ({ type }) => (
+export default ({ type, astTypes }) => (
   <div className="typeDetails">
     <h3 className="typeDetails-heading">{type.typeName}</h3>
 
     <h4 className="typeDetails-subHeading">Base</h4>
-    <ul>
-      { renderBaseTypes(type) }
-    </ul>
+    <SuperTypes type={type} astTypes={astTypes} />
 
     <h4 className="typeDetails-subHeading">Fields</h4>
     <ul className="fieldsList">

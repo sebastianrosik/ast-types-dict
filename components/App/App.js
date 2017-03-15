@@ -6,6 +6,9 @@ import Details from '../TypeDetails';
 
 const { namedTypes, Type } = astTypes;
 
+
+window.astTypes = astTypes;
+
 export default class App extends React.Component {
   constructor() {
     super();
@@ -83,7 +86,7 @@ export default class App extends React.Component {
             <List items={this.getFilteredListItems()} selected={this.getSelectedTypeName()}/>
           </section>
           <section className="app-column">
-            { this.hasSelectedType() && <Details type={this.state.selectedType}/> }
+            { this.hasSelectedType() && <Details type={this.state.selectedType} astTypes={astTypes}/> }
           </section>
         </div>
       </main>
