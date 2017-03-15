@@ -66,6 +66,9 @@ export default class App extends React.Component {
   getFilteredListItems() {
     return this.getAstTypes().filter(this.isQueryMatchingTypeName)
   }
+  getSelectedTypeName() {
+      return this.state.selectedType ? this.state.selectedType.typeName : null;
+  }
   render() {
     return (
       <main className="app">
@@ -77,7 +80,7 @@ export default class App extends React.Component {
         </header>
         <div className="app-columnsContainer">
           <section className="app-column">
-            <List items={this.getFilteredListItems()} selected={this.state.selectedType}/>
+            <List items={this.getFilteredListItems()} selected={this.getSelectedTypeName()}/>
           </section>
           <section className="app-column">
             { this.hasSelectedType() && <Details type={this.state.selectedType}/> }
