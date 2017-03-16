@@ -2,46 +2,35 @@
 
 .typeDetails {
   box-sizing: border-box;
-  padding: 10px 20px;
   background: #eee;
   overflow: auto;
   border-left: 1px solid @gray0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 
   &-subHeading {
     margin-top: 45px;
     border-bottom: 1px solid @gray0;
   }
-}
 
-.fieldsList {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  &-item {
-    display: block;
-    margin: 7px 0;
+  &-header,
+  &-info {
+    padding: 10px 20px;
   }
-}
 
-.field {
-  &-name {
-    margin-right: 10px;
-    font-weight: bold;
-    display: inline-block;
-    width: 125px;
-    &:after {
-      display: inline-block;
-      content: ': ';
+  &-header {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &-source {
+    flex-grow: 1;
+    position: relative;
+
+    .sourceCode {
+      height: 100%;
+      position: absolute;
     }
-  }
-  &-value {
-    background: #fff;
-    padding: 2px 4px;
-    border-radius: 2px;
-  }
-  &-hidden {
-    color: @gray1;
   }
 }
