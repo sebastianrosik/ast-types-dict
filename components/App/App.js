@@ -67,7 +67,7 @@ export default class App extends React.Component {
     return this.getAstTypes().filter(this.isQueryMatchingTypeName)
   }
   getSelectedTypeName() {
-      return this.state.selectedType ? this.state.selectedType.typeName : null;
+    return this.state.selectedType ? this.state.selectedType.typeName : null;
   }
   render() {
     return (
@@ -77,6 +77,7 @@ export default class App extends React.Component {
           <form className="filterForm">
             <input className="filterForm-input" type="search" placeholder="Type..." onInput={(event)=> this.query(event.target.value)} autoFocus/>
           </form>
+          <span className="app-astTypesVersion">ast-types@{AST_TYPES_VERSION}</span>
         </header>
         <div className="app-columnsContainer">
           <section className="app-column">

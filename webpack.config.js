@@ -4,7 +4,8 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const plugins = [
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    AST_TYPES_VERSION: JSON.stringify(require("./node_modules/ast-types/package.json").version)
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: "vendor",
@@ -27,7 +28,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: 'dist',
     path: path.resolve(__dirname, 'dist')
   },
   module: {
