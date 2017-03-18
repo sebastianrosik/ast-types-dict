@@ -3,13 +3,6 @@ import React from 'react';
 import SuperTypes from '../SuperTypes';
 import SourceCode from '../SourceCode';
 
-const renderFieldValue = (value) => {
-  if (typeof value === 'undefined') {
-    return 'undefined';
-  }
-  return JSON.stringify(value);
-}
-
 const isBuildable = (type) => type.buildable;
 
 export default ({ type, astTypes }) => (
