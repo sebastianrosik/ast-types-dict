@@ -1,5 +1,7 @@
 @import '../vars';
 
+@height: 1.5em;
+
 .sourceCode {
   white-space: pre;
   background: lighten(@gray0, 12%);
@@ -8,10 +10,11 @@
   display: block;
   box-sizing: border-box;
   overflow: auto;
-  font-size: 0.8em;
+  line-height: @height;
 
-  code {
+  &-line {
     display: block;
-    min-height: 13px;
+    min-height: @height;
+    margin: 1px 0;
   }
 }

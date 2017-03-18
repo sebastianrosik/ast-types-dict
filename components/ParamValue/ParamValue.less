@@ -1,0 +1,12 @@
+@import '../vars';
+
+.paramValue-item {
+  &:after {
+    display: inline-block;
+    content: ' | ';
+  }
+
+  &:last-child:after {
+    display: none;
+  }
+}

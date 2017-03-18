@@ -1,12 +1,6 @@
 import React from 'react';
 
-const TypeSelect = ({ children, typeDescendants }) => {
-  const typeName = children;
-  const options = [typeName, ...typeDescendants];
-  return <select>{
-    options.map(option => <option key={option}>{option}</option>)
-  }</select>;
-};
+import TypeSelect from '../TypeSelect';
 
 const divideTypes = (typesString, descendants) => {
   return typesString
@@ -14,7 +8,7 @@ const divideTypes = (typesString, descendants) => {
    .map(typeName => typeName.trim())
    .map(typeName => {
      const typeDescendants = descendants[typeName];
-     return <strong key={typeName}>{
+     return <strong key={typeName} className="paramValue-item">{
         typeDescendants === undefined ? typeName : <TypeSelect typeDescendants={typeDescendants}>{typeName}</TypeSelect>
       }</strong>;
   });
