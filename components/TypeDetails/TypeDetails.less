@@ -15,7 +15,8 @@
   }
 
   &-header,
-  &-info {
+  &-info,
+  &-empty {
     padding: 10px 20px;
   }
 
@@ -32,5 +33,17 @@
       height: 100%;
       position: absolute;
     }
+  }
+
+  &-info,
+  &-empty {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 0 #fff;
+    color: @gray1;
+    padding: 30px;
   }
 }

@@ -54,9 +54,6 @@ export default class App extends React.Component {
       query: ''
     });
   }
-  hasSelectedType() {
-    return this.state.selectedType !== null;
-  }
   selectType(type) {
     this.setState({
       selectedType: type
@@ -86,7 +83,7 @@ export default class App extends React.Component {
             <List items={this.getFilteredListItems()} selected={this.getSelectedTypeName()}/>
           </section>
           <section className="app-column">
-            { this.hasSelectedType() && <Details type={this.state.selectedType} astTypes={astTypes}/> }
+            <Details type={this.state.selectedType} astTypes={astTypes}/>
           </section>
         </div>
       </main>
