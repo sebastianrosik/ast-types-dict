@@ -51,10 +51,19 @@ export default class TypeSelect extends React.Component {
       }</ul>
     }
 
+    renderAnchor() {
+      const typeName = this.state.displayName;
+      return <a href={`#${typeName}`} className="typeSelect-anchor"/>
+    }
+
     render() {
       const { displayName } = this.state;
-      return <span className="typeSelect" onClick={this.clickHandler}>{
-        displayName
-      }{this.renderList()}</span>;
+      return <span>
+        <span className="typeSelect" onClick={this.clickHandler}>
+          { displayName }
+          { this.renderList() }
+        </span>
+        { this.renderAnchor() }
+      </span>;
     }
 }

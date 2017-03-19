@@ -43,5 +43,5 @@ export default ({ type }) => {
   const lines = getSourceCodeExampleForType(type);
   return <div className="sourceCode">{
     lines.map((line, lineNumber) => <code className="sourceCode-line" key={lineNumber}>{line}</code>)
-  }</div>
+  }</div>;
 };

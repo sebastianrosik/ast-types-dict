@@ -23,7 +23,9 @@ export default class App extends React.Component {
     this.selectType(type);
   }
   getTypeByName(typeName) {
-    return Type.def(typeName);
+    if (typeName) {
+      return Type.def(typeName);
+    }
   }
   componentDidMount() {
     window.addEventListener("hashchange", this.hashChangeHandler, false);

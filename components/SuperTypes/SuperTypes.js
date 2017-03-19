@@ -7,12 +7,12 @@ const renderSupertypesNames = (types) => types.map(typeName => {
 });
 
 export default ({ type, astTypes }) => {
-  const types = astTypes.getSupertypeNames(type.typeName).reverse();
+  const types = astTypes.getSupertypeNames(type.typeName);
   if (types.length === 0) {
     return <em>None</em>;
   }
   return <ul className="superTypes">
-    { renderSupertypesNames(types) }
+    { renderSupertypesNames(types.reverse()) }
     <li key={type.typeName} className="superTypes-item">{type.typeName}</li>
   </ul>;
 };
